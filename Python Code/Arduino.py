@@ -13,6 +13,9 @@ verificationRecieveCode = b'8'
 
 checkVerifOnRead = False
 
+def getPos(serialData):
+    return serialData.readline();
+
 def communicate(serialData, requesting, data, val):
     if (requesting == False):
         serialData.write(data.encode())

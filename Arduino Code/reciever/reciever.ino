@@ -14,6 +14,8 @@ char text[32] = {0};
 char pythonSendVerifCode = '5';
 char pythonReadVerifCode = '8';
 
+bool TEST = false;
+
 void setup()
 {
   while (!Serial);
@@ -35,7 +37,14 @@ void loop()
   {
     //Serial.println("Read");
     radio.read(&text, sizeof(text));
+    
   }
+  if (TEST)
+    {
+      String dataToWrite = text;
+      Serial.print(dataToWrite);
+      Serial.write("\n");
+    }
   if (Serial.available() > 0)
   {
     //Store the read data as a CHAR, this is an indicator to what the controller wants (Lowercase means UPDATE FROM python, uppercase means to UPDATE python)
@@ -55,6 +64,7 @@ void loop()
     if (dataRecieved == 'I') {
       Serial.write(pythonReadVerifCode);
       Serial.write("1\n");
+      TEST = true;
     }
     if (dataRecieved == 'A') {
       String dataToWrite = text;
@@ -63,4 +73,5 @@ void loop()
     }
     else {}
   }
+  delay(10);
 }

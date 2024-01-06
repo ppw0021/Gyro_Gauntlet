@@ -9,8 +9,8 @@ import serial
 from tkinter import *
 
 #Resolution
-ScreenHeight = 768
-ScreenLength = 1366
+ScreenHeight = 1440
+ScreenLength = 2560
 
 #Screen center
 HeightStartPos = (ScreenHeight/2)
@@ -46,7 +46,9 @@ def requestGyroPos(data):
     return (stringVal.decode("utf-8")).strip()
 
 def requestAll():
-    stringVal = Arduino.communicate(ser1, True, 'A', 0)
+    #stringVal = Arduino.communicate(ser1, True, 'A', 0)
+
+    stringVal = Arduino.getPos(ser1);
     print(stringVal)
     stringVal = stringVal.decode("utf-8")
     X = stringVal.split(":")
@@ -67,6 +69,7 @@ for x in range(300):
 
 while(True):
     #Use for 60HZ
+    #time.sleep(0.010);
     #time.sleep(0.016)
     #Use for 144HZ
     #time.sleep(0.00694)
