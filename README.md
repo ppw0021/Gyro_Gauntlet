@@ -72,13 +72,7 @@ transmitter.ino
 ```
 /*
    Written by Declan Ross
-   01/09/2020
    Wireless mouse transmitter
-*/
-/*
-int LEFTMOUSE = 5;
-int RIGHTMOUSE = 4;
-int CALIBRATE = 2;
 */
 //Include Libraries
 #include <SPI.h>
@@ -203,7 +197,6 @@ reciever.ino
 ```
 //Include Libraries
 #include <SPI.h>
-//#include <nRF24L01.h>
 #include <RF24.h>
 
 //create an RF24 object
@@ -290,7 +283,6 @@ Arduino.py
 ```
 # Written by Declan Ross
 # Serial MASTER connection with Arduino
-# LED Controller
 
 #To download Serial
 #https://www.instructables.com/id/How-to-Communicate-With-Arduino-From-a-Python-Scri/
