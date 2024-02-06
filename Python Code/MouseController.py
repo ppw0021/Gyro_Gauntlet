@@ -17,8 +17,8 @@ HeightStartPos = (ScreenHeight/2)
 LengthStartPos = (ScreenLength/2)
 
 #Sensitivity
-HeightSens = 8
-LengthSens = 8
+HeightSens = 16
+LengthSens = 16
 scrollSens = 0.5
 
 #Offset from center for calibration
@@ -36,7 +36,7 @@ currentTime = 0
 last = 0
 startTime = time.time()
 
-ser1 = serial.Serial("COM4", 115200, timeout=0.05)
+ser1 = serial.Serial("COM3", 115200, timeout=0.05)
 def tryConnect():
     data = 'I'
     return Arduino.connect(ser1, data, 0)
@@ -73,11 +73,18 @@ while(True):
     #time.sleep(0.016)
     #Use for 144HZ
     #time.sleep(0.00694)
-    AllDataList = requestAll()
-    print(AllDataList)
+    try:
+        AllDataList = requestAll()
+    except:
+        continue
+    #print(AllDataList)
     if (AllDataList[0] == "A"):
-        x = float(AllDataList[1].strip())
-        y = float(AllDataList[2].strip())
+	#x = float(AllDataList[1].strip())
+        #y = float(AllDataList[2].strip())
+
+	#Reversed
+        y = 0 - float(AllDataList[1].strip())
+        x = float(AllDataList[2].strip())
         subfinalx = LengthStartPos - ((LengthSens * x) - LengthOffset)
         subfinaly = HeightStartPos - ((HeightSens * y) - HeightOffset)
         finalx = float(subfinalx)
@@ -88,7 +95,7 @@ while(True):
                 if leftHeldDown == False:
                     mouse.press(button='left')	
                     leftHeldDown = True            
-            if (AllDataList[5] == 't'):
+            if (AllDataList[4] == 't'):
                 mouseScrolling = True
                 moveMouse = False
                 if (currentTime == 0):
@@ -103,10 +110,10 @@ while(True):
                 mouse.release(button="left")
 
              
-        if (AllDataList[4] == 't'):
+        if (AllDataList[5] == 't'):
             LengthOffset = (LengthSens * x)
             HeightOffset = (HeightSens * y)
-        if AllDataList[5] == 't':
+        if (AllDataList[4] == 't'):
             if (rightHeldDown == False):
                 if (mouseScrolling == False):
                     moveMouse = True

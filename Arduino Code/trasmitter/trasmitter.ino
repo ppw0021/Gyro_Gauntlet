@@ -3,11 +3,11 @@
    01/09/2020
    Wireless mouse transmitter
 */
-
+/*
 int LEFTMOUSE = 5;
 int RIGHTMOUSE = 4;
 int CALIBRATE = 2;
-
+*/
 //Include Libraries
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -28,13 +28,13 @@ float timeStep = 0.01;
 char pythonSendVerifCode = '5';
 char pythonReadVerifCode = '8';
 
-int LeftMouseClick = LEFTMOUSE;
+int LeftMouseClick = 5;
 String LeftMouseState = "f";
 
-int CenterButton = CALIBRATE;
+int CenterButton = 2;
 String CenterButtonState = "f";
 
-int RightMouseClick = RIGHTMOUSE;
+int RightMouseClick = 4;
 String RightMouseState = "f";
 
 //create an RF24 object
@@ -76,14 +76,20 @@ void setup() {
 }
 
 void loop() {
+  unsigned long currentTime = millis();
+  static unsigned long previousTime = 0;
+  static unsigned long interval = 1;
+  while (currentTime - previousTime >= interval) {
+    previousTime = currentTime;
+  }
+
   // Read normalized values
   Vector norm = mpu.readNormalizeGyro();
-  delay(10);
   // Calculate Pitch, Roll and Yaw
   pitch = pitch + norm.YAxis * timeStep;
   roll = roll + norm.XAxis * timeStep;
   yaw = yaw + norm.ZAxis * timeStep;
-
+  
   //Send message to receiver
 
   String dataType = "A";
@@ -106,7 +112,7 @@ void loop() {
     RightMouseState = "f";
   }
   //String dataToWrite = "A:0.00:0.00:T:T";
-  String dataToWrite = String(dataType + ":" + rollVal + ":" + yawVal + ":" + LeftMouseState + ":" + CenterButtonState + ":" + RightMouseState + ":" + pitchVal + ":" + "0");
+  String dataToWrite = String(dataType + ":" + rollVal + ":" + yawVal + ":" + LeftMouseState + ":" + RightMouseState + ":" + CenterButtonState + ":" + pitchVal + ":" + "0");
   int dataLength = dataToWrite.length();
   char i[dataLength];
 

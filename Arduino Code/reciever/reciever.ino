@@ -73,5 +73,10 @@ void loop()
     }
     else {}
   }
-  delay(10);
+  unsigned long currentTime = millis();
+  static unsigned long previousTime = 0;
+  static unsigned long interval = 1;
+  while (currentTime - previousTime >= interval) {
+    previousTime = currentTime;
+  }
 }
