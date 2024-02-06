@@ -2,7 +2,7 @@
 
 This is an Arduino powered device that wireless connects to a computer via a RF module. You can control the computer as if you had an invisible mouse in your hand using hand gestures and motions.
 
-![IMG_5898](https://github.com/ppw0021/gyro_gauntlet/assets/143673072/e1c3b3ce-2eb7-459b-b04b-eb336367a3fa)
+![IMG_6590 (1)](https://github.com/ppw0021/gyro_gauntlet/assets/143673072/96c9b333-1e1e-452d-898b-adc47e2145eb)
 
 ## Description
 
