@@ -69,7 +69,7 @@ pip install tkinter
 There is three programs that are needed for the Gyro-Gauntlet to work. The first program (transmitter.ino) is loaded onto the Arduino Nano onboard the gyro-glove, this code translates the readings from the Gyroscope module into numbers (as well as the states of the switches) and transmits it to the reciever module which has the second program loaded (reciever.ino). This code processes the recieved transmission and transmitts it via serial to the third and final code, the python script (MouseController.py) that inteprets the numbers and states of the switches and converts the raw rotation numbers and switch positions into moues movements. There is also an additional file named Arduino.py that acts as a function library for MouseController.py.
 
 transmitter.ino
-```
+```cpp
 /*
    Written by Declan Ross
    Wireless mouse transmitter
@@ -194,7 +194,7 @@ void loop() {
 ```
 
 reciever.ino
-```
+```cpp
 //Include Libraries
 #include <SPI.h>
 #include <RF24.h>
@@ -280,7 +280,7 @@ void loop()
 ```
 
 Arduino.py
-```
+```python
 # Written by Declan Ross
 # Serial MASTER connection with Arduino
 
