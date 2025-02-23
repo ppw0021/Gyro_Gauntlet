@@ -357,7 +357,7 @@ def connect(serialData, data, val):
 ```
 
 MouseController.py
-```
+```python
 #pip install mouse
 #pip install pyserial
 #or pip3 install mouse
