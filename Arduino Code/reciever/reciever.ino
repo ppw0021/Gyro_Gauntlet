@@ -4,7 +4,7 @@
 #include <RF24.h>
 
 //create an RF24 object
-RF24 radio(9, 8);  // CE, CSN
+RF24 radio(5, 6);  // CE, CSN
 
 //address through which two modules communicate.
 const byte address[6] = "00001";
